@@ -35,6 +35,15 @@ const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
+  {
+    resolve: `medusa-plugin-strapi`,
+    options: {
+      strapi_medusa_user: 'medusa_user',
+      strapi_medusa_password: 'medusaPassword1',
+      strapi_url: '127.0.0.1',
+      strapi_port: '1337'
+    }
+  },
   
   // To enable the admin plugin, uncomment the following lines and run `yarn add @medusajs/admin`
   {
@@ -70,7 +79,7 @@ const projectConfig = {
   store_cors: STORE_CORS,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  // redis_url: REDIS_URL
+  redis_url: REDIS_URL
 }
 
 if (DATABASE_URL && DATABASE_TYPE === "postgres") {
